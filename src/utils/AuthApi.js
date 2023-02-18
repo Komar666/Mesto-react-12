@@ -20,10 +20,9 @@ class AuthApi {
             }
         }
         */
-        const response = await fetch(this._baseUrl + '/signup', {
-            headers: { "Authorization": `Bearer ${token}` },
-        })
-        return this._checkStatus(response)
+      fetch(this._baseUrl + '/signup', {
+          headers: { "Authorization": `Bearer ${token}` },
+      }).then((r) => { return this._checkStatus(r) })
     }
 
 
@@ -33,12 +32,11 @@ class AuthApi {
             "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjUxNDhlNWJiODhmZGNhOTIxYjZhYzciLCJpYXQiOjE1OTkyMTExNzN9.Q3DVLh7t0f0BjyG9gh3UlUREYQxl2chdGTGy701lF6I"
         }
         */
-        const response = await fetch(this._baseUrl + '/signin', {
-            method: 'POST',
-            headers: {},
-            body: { email, password }
-        })
-        return this._checkStatus(response)
+        fetch(this._baseUrl + '/signin', {
+          method: 'POST',
+          headers: {},
+          body: { email, password }
+        }).then((r) => { return this._checkStatus(r) })
     }
 
     async register({ email, password }) {
@@ -50,11 +48,11 @@ class AuthApi {
             }
         }
         */
-        const response = await fetch(this._baseUrl + '/signup', {
-            headers: {},
-            body: { email, password }
-        })
-        return this._checkStatus(response)
+        fetch(this._baseUrl + '/signup', {
+          method: 'POST',
+          headers: { ...this._headers },
+          body: JSON.stringify({ email, password })
+        }).then((r) => { return this._checkStatus(r) })
     }
 
 }
@@ -62,7 +60,7 @@ class AuthApi {
 
 
 const authApi = new AuthApi({
-    baseUrl: 'https://auth.nomoreparties.co/',
+    baseUrl: 'https://auth.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' }
 });
 

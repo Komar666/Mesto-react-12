@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navigate } from "react-router-dom";
+import HomePage from "./HomePage";
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-const ProtectedRouteElement = ({ element: Component, ...props  }) => {
-    return (
-      props.loggedIn ? <Component {...props} /> : <Navigate to="/login" replace/>
-  )}
-  
-  export default ProtectedRouteElement; 
-  
+const ProtectedRouteElement = () => {
+  const { loggedIn } = useContext(CurrentUserContext);
+  return (
+    loggedIn ? <HomePage /> : <Navigate to="/sign-up" replace />
+  )
+}
+
+export default ProtectedRouteElement;
