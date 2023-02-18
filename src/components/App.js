@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Routes } from "react-router-dom";
+import { Navigate , Route, Routes } from "react-router-dom";
 import Login from './Login.js';
 import Register from './Register.js';
 import Header from "./Header";
@@ -12,6 +12,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import ProtectedRoute from "./ProtectedRoute"; 
 
 function App(props) {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -25,6 +26,7 @@ function App(props) {
   const [cards, setCards] = useState([]);
 
   const [loggedIn,setLoggedIn] = useState(false);
+
 
   useEffect(() => {
     // LOAD USER INFO
@@ -180,20 +182,21 @@ function App(props) {
   };
 
   return (
+   
     <CurrentUserContext.Provider value={currentUser}>
 
 <Routes>
-  <Route path="/" element={''} />
+<Route path="/" element={loggedIn ? <Navigate to="/" replace /> : <Navigate to="/sign-in" replace />} /> 
 
   <Route path="/sign-in" element={
-    <div className="loginContainer">
       <Login  />
-    </div>} />
+    } />
   <Route path="/sign-up" element={
-    <div className="registerContainer">
       <Register />
-    </div>} />
+   } />
 </Routes>
+
+
 
 
       <div className="page">

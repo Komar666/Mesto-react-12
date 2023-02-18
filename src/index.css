@@ -29,6 +29,8 @@
 @import url(./blocks/element-like-group__icon-active/element-like-group__icon-active.css);
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header-nav-block/header-nav-block.css);
+@import url(./blocks/header-nav-block/__text/header-nav-block__text.css);
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile-avatar/profile-avatar.css);
 @import url(./blocks/profile-avatar/__img/profile-avatar__img.css);

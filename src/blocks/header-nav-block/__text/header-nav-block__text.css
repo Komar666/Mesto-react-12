@@ -1,0 +1,21 @@
+.header-nav-block__text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0;
+    margin-top: 6px;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: 1s;
+    height: max-content;
+}
+
+.header-nav-block__text:hover {
+    opacity: 0.6;
+}
+
+.header-nav-block__text:nth-of-type(2n) {
+    margin-left: 24px;
+}

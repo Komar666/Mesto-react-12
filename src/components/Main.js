@@ -14,40 +14,8 @@ function Main(props) {
 
   return (
 
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
     <main>
-          <div
-      className="popup popup_opened">
   
-      <div className="popup-container">
-        <form className="popup-form form-profile-edit">
-         
-         <div className="popup-form__success">
-            <img className="popup-form__success_img" src={iconSuccess} />
-            <p className="popup-form__success_text">Вы успешно зарегистрировались!</p>
-         </div>
-
-        </form>
-        <button
-          className="popup-container-close "
-          type="button"
-   
-        ></button>
-      </div>
-      </div>
       <section className="profile">
         <div className="profile-avatar" onClick={props.onEditAvatar}>
           <img
