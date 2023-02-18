@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Switch, Route, Routes } from "react-router-dom";
+import Login from './Login.js';
+import Register from './Register.js';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -20,6 +23,8 @@ function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
   // const [state, setCards] = useState(null);
   const [cards, setCards] = useState([]);
+
+  const [loggedIn,setLoggedIn] = useState(false);
 
   useEffect(() => {
     // LOAD USER INFO
@@ -176,6 +181,21 @@ function App(props) {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+
+<Routes>
+  <Route path="/" element={''} />
+
+  <Route path="/sign-in" element={
+    <div className="loginContainer">
+      <Login  />
+    </div>} />
+  <Route path="/sign-up" element={
+    <div className="registerContainer">
+      <Register />
+    </div>} />
+</Routes>
+
+
       <div className="page">
         <Header />
 

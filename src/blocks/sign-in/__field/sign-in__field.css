@@ -1,0 +1,20 @@
+.sign-in__field {
+    width: 358px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCCCCC;
+    border: none;
+    background-color: rgb(0, 0, 0);
+    border-bottom: 2px solid #CCCCCC;
+    display: flex;
+    margin: auto;
+    margin-top: 54px;
+    padding-bottom: 13px;
+}
+
+.sign-in__field:nth-of-type(2n) {
+    margin-top: 30px;
+}

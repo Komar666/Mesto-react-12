@@ -1,0 +1,7 @@
+.popup-form__success {
+    max-width: 358px;
+    min-height: 210px;
+    margin: 60px 36px;
+    display: flex;
+    flex-direction: column;
+}

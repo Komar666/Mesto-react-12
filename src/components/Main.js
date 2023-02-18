@@ -2,17 +2,52 @@ import React, { useState, useEffect, useContext } from "react";
 import buttonProfilePath from "../images/Profile.svg";
 import buttonEditPath from "../images/Edit-Button.svg";
 import buttonAddPath from "../images/Vector.svg";
+import iconSuccess from "../images/Success.svg";
 import api from "../utils/Api";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const { cards } = props
-  
+  const { cards } = props;
+
   const currentUser = useContext(CurrentUserContext);
-  
+
   return (
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
     <main>
+          <div
+      className="popup popup_opened">
+  
+      <div className="popup-container">
+        <form className="popup-form form-profile-edit">
+         
+         <div className="popup-form__success">
+            <img className="popup-form__success_img" src={iconSuccess} />
+            <p className="popup-form__success_text">Вы успешно зарегистрировались!</p>
+         </div>
+
+        </form>
+        <button
+          className="popup-container-close "
+          type="button"
+   
+        ></button>
+      </div>
+      </div>
       <section className="profile">
         <div className="profile-avatar" onClick={props.onEditAvatar}>
           <img
@@ -48,7 +83,9 @@ function Main(props) {
       </section>
       <section className="elements">
         <ul className="elements__list">
-          {cards.length > 0 && currentUser && cards.map((card) => (
+          {cards.length > 0 &&
+            currentUser &&
+            cards.map((card) => (
               <Card
                 key={card._id}
                 onConfirm={props.onConfirm}
@@ -56,8 +93,8 @@ function Main(props) {
                 onCardClick={props.onCardClick}
                 onCardDelete={props.onCardDelete}
                 onCardLike={props.onCardLike}
-            />
-        ))}
+              />
+            ))}
         </ul>
       </section>
     </main>

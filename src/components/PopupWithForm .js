@@ -14,7 +14,7 @@ function PopupWithForm(props) {
           method="post"
           className="popup-form form-profile-edit"
         >
-          <h2 className="popup-form__title ">{props.title}</h2>
+          <h2 className="popup-form__title">{props.title}</h2>
           {props.children}
           <button type="submit" className="popup-form__button">
             {props.button}
@@ -27,6 +27,7 @@ function PopupWithForm(props) {
         ></button>
       </div>
     </div>
+    
   );
 }
 
