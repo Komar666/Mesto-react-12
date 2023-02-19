@@ -6,16 +6,16 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentProfile } = useContext(CurrentUserContext);
 
   function nameChange(e) { setName(e.target.value); }
   function discriptionChange(e) { setDescription(e.target.value); }
 
 
   useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
+    setName(currentProfile.name);
+    setDescription(currentProfile.about);
+  }, [currentProfile]);
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы

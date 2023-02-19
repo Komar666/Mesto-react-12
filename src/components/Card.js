@@ -7,14 +7,14 @@ function Card({ card, onCardClick, onConfirm, onCardLike, onCardDelete }) {
   const handleLikeClick = () => { onCardLike(card); };
   const handleDeleteClick = () => { onCardDelete(card); };
 
-  const { currentUser } = React.useContext(CurrentUserContext);
+  const { currentProfile } = React.useContext(CurrentUserContext);
 
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner._id === currentProfile._id;
   // Далее в разметке используем переменную для условного рендеринга
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i._id === currentProfile._id);
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `element-like-group__icon ${

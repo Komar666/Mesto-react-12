@@ -5,23 +5,19 @@ class AuthApi {
     }
 
     _checkStatus(res) {
-        if (res.ok) {
-            return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
     async fetchUserMe ({ token }) {
         /** Success result:
         {
-            {
-                "_id":"1f525cf06e02630312f3fed7",
-                "email":"email@email.ru"
-            }
+            "_id":"1f525cf06e02630312f3fed7",
+            "email":"email@email.ru"
         }
         */
-      fetch(this._baseUrl + '/signup', {
-          headers: { "Authorization": `Bearer ${token}` },
+      return fetch(this._baseUrl + '/users/me', {
+          headers: { "Authorization": `Bearer ${token}`, ...this._headers },
       }).then((r) => { return this._checkStatus(r) })
     }
 
@@ -32,11 +28,13 @@ class AuthApi {
             "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjUxNDhlNWJiODhmZGNhOTIxYjZhYzciLCJpYXQiOjE1OTkyMTExNzN9.Q3DVLh7t0f0BjyG9gh3UlUREYQxl2chdGTGy701lF6I"
         }
         */
-        fetch(this._baseUrl + '/signin', {
+        return fetch(this._baseUrl + '/signin', {
           method: 'POST',
-          headers: {},
-          body: { email, password }
-        }).then((r) => { return this._checkStatus(r) })
+          headers: { ...this._headers },
+          body: JSON.stringify({ email, password })
+        }).then((r) => {
+          return this._checkStatus(r)
+      })
     }
 
     async register({ email, password }) {
@@ -48,7 +46,7 @@ class AuthApi {
             }
         }
         */
-        fetch(this._baseUrl + '/signup', {
+        return fetch(this._baseUrl + '/signup', {
           method: 'POST',
           headers: { ...this._headers },
           body: JSON.stringify({ email, password })

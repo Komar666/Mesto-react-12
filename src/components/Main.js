@@ -10,7 +10,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Main(props) {
   const { cards } = props;
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentProfile } = useContext(CurrentUserContext);
 
   return (
 
@@ -19,7 +19,7 @@ function Main(props) {
       <section className="profile">
         <div className="profile-avatar" onClick={props.onEditAvatar}>
           <img
-            src={`${currentUser.avatar}`}
+            src={`${currentProfile.avatar}`}
             className="profile-avatar__img"
             alt="Аватар"
           />
@@ -31,8 +31,8 @@ function Main(props) {
         </div>
 
         <div className="profile-info">
-          <h1 className="profile-info__title">{currentUser.name}</h1>
-          <p className="profile-info__subtitle">{currentUser.about}</p>
+          <h1 className="profile-info__title">{currentProfile.name}</h1>
+          <p className="profile-info__subtitle">{currentProfile.about}</p>
           <button type="button" className="profile-info__button">
             <img
               alt="Кнопка редактирования"
@@ -52,7 +52,7 @@ function Main(props) {
       <section className="elements">
         <ul className="elements__list">
           {cards.length > 0 &&
-            currentUser &&
+            currentProfile &&
             cards.map((card) => (
               <Card
                 key={card._id}

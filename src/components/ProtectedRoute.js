@@ -6,7 +6,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 const ProtectedRouteElement = () => {
   const { loggedIn } = useContext(CurrentUserContext);
   return (
-    loggedIn ? <HomePage /> : <Navigate to="/sign-up" replace />
+    loggedIn ? <HomePage /> : <Navigate to="/sign-in" replace />
   )
 }
 

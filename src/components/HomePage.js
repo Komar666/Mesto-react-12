@@ -21,14 +21,14 @@ const HomePage = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
 
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext)
+  const { currentProfile, setCurrentProfile } = useContext(CurrentUserContext)
 
   useEffect(() => {
     // LOAD USER INFO
     api
       .getUserInfo()
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentProfile(res);
         console.log(
           `%c[App] User fetched inside useEffect: ${JSON.stringify(res)}`,
           "color: cyan;"
@@ -65,7 +65,7 @@ const HomePage = () => {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentProfile._id);
     console.log(
       `%c[App] handleCardLike: card id: ${card._id} isLiked: ${isLiked}`,
       "color: violet"
@@ -84,7 +84,7 @@ const HomePage = () => {
   }
 
   function handleCardDelete(card) {
-    const isOwn = card.owner._id === currentUser._id;
+    const isOwn = card.owner._id === currentProfile._id;
     // Отправляем запрос в API и получаем обновлённые данные карточки
     isOwn &&
       api
@@ -107,7 +107,7 @@ const HomePage = () => {
           )}`,
           "color: cyan;"
         );
-        setCurrentUser(updatedUser);
+        setCurrentProfile(updatedUser);
         closeAllPopups();
       })
       .catch((err) => {
@@ -125,7 +125,7 @@ const HomePage = () => {
           )}`,
           "color: cyan;"
         );
-        setCurrentUser(updatedUser);
+        setCurrentProfile(updatedUser);
         closeAllPopups();
       })
       .catch((err) => {
@@ -179,7 +179,7 @@ const HomePage = () => {
 
     return (
       <div>
-        {currentUser && (
+        {currentProfile && (
           <Main
             onCardClick={setSelectedCard}
             onEditProfile={handleEditProfileClick}
