@@ -1,12 +1,37 @@
+import { createStandaloneToast } from '@chakra-ui/toast'
+const { toast } = createStandaloneToast()
+
+export function errorMessageChakra(desc) {
+  toast({
+    title: 'Error',
+    description: desc,
+    status: 'error',
+    duration: 3000,
+    isClosable: true,
+    position: "top"
+  })
+}
+
 class AuthApi {
     constructor(options) {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
     }
 
-    _checkStatus(res) {
-        if (res.ok) { return res.json(); }
-        return Promise.reject(`Ошибка: ${res.status}`);
+    _checkStatus(res, loud = true) {
+        const reject = (m) => {
+          (loud && errorMessageChakra(m));
+          return Promise.reject(`Ошибка: ${m}`);
+        }
+        if ([400, 401].includes(res.status)) {
+          return res.json().then((raw) => {
+            console.log('raw is', raw)
+            const msg = raw.message || raw.error
+            return reject(msg)
+          })
+        }
+        if (!res.ok) { return reject(res.status) }
+        return res.json()
     }
 
     async fetchUserMe ({ token }) {

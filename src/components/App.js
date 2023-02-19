@@ -8,6 +8,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import authApi from "../utils/AuthApi"
 
+import { createStandaloneToast } from '@chakra-ui/toast'
+
 function App(_props) {
   const [initialLoaded, setInitialLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -19,6 +21,8 @@ function App(_props) {
 
   const getJWT = () => localStorage.getItem('auth-token');
   const setJWT = (token) => { localStorage.setItem('auth-token', token) };
+
+  const { ToastContainer } = createStandaloneToast()
 
   useEffect(() => {
     if (authToken) { fetchUserMe() }
@@ -103,6 +107,7 @@ function App(_props) {
         }
 
         <Footer />
+        <ToastContainer />
 
       </div>
 
