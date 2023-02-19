@@ -19,7 +19,7 @@ function App(_props) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [authToken, setAuthToken] = useState(null);
 
-  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(true)
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false)
 
   const navigate = useNavigate()
 
@@ -107,6 +107,8 @@ function App(_props) {
           <Route path="/sign-up" element={
             <Register onRegister={handleUserRegister} />
           }/>
+          {/* Return any unknown route to protected component */}
+          <Route path="*" element={<ProtectedRoute />} />
 
         </Routes>
         }
