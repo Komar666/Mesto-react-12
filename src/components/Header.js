@@ -9,7 +9,9 @@ function Header() {
       <img className="header__logo" src={logoPath} alt="Логотип" />
       <div className="header-nav-block">
         <p className="header-nav-block__text">{ currentUser && currentUser.email }</p>
-        <p className="header-nav-block__text" onClick={() => handleLogout()}>Выйти</p>
+        { currentUser &&
+          <p className="header-nav-block__text" onClick={() => handleLogout()}>Выйти</p>
+        }
       </div>
     </header>
   );
