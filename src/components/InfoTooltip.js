@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm ";
 
-export default function InfoTooltip() {
+export default function InfoTooltip({ isOpen, onClose }) {
+  const iconSuccess = ""
+  function handleSubmit () {};
   return (
     <PopupWithForm
       onSubmit={handleSubmit}
@@ -11,19 +13,15 @@ export default function InfoTooltip() {
       title="Новое место"
       name="add"
     >
-      <div className="popup popup_opened">
         <div className="popup-container">
-          <form className="popup-form form-profile-edit">
             <div className="popup-form__success">
               <img className="popup-form__success_img" src={iconSuccess} />
               <p className="popup-form__success_text">
                 Вы успешно зарегистрировались!
               </p>
             </div>
-          </form>
-          <button className="popup-container-close " type="button"></button>
+          <button className="popup-container-close " type="button" onClick={() => onClose()}></button>
         </div>
-      </div>
     </PopupWithForm>
   );
 }

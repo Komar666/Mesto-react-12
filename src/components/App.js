@@ -8,6 +8,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import authApi from "../utils/AuthApi"
 
+import InfoTooltip from "./InfoTooltip"
+
 import { createStandaloneToast } from '@chakra-ui/toast'
 
 function App(_props) {
@@ -16,6 +18,8 @@ function App(_props) {
   const [currentProfile, setCurrentProfile] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [authToken, setAuthToken] = useState(null);
+
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(true)
 
   const navigate = useNavigate()
 
@@ -50,6 +54,7 @@ function App(_props) {
         console.log(`🔑 [App] Success handleUserRegister, data: ${JSON.stringify(userData)}`)
         // WAIT TO FIX TOO MANY REQUEST ERROR FROM SERVER
         setTimeout(() => {
+          setInfoTooltipOpen(true)
           handleUserAuthorize({ email, password })
         }, 500)
       }).catch((e) => {
@@ -109,6 +114,10 @@ function App(_props) {
         <Footer />
         <ToastContainer />
 
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          onClose={() => { setInfoTooltipOpen(false) }}
+        />
       </div>
 
     </CurrentUserContext.Provider>
